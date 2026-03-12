@@ -30,6 +30,11 @@ public class Video {
     @NotEmpty(message = "Video release time cannot be empty")
     private String releaseTime;
 
+    @JsonProperty("author")
+    @OneToOne(cascade = CascadeType.ALL)
+    @NotNull(message = "Comment author cannot be null")
+    private User author;
+
     @JsonProperty("comments")
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "videoId")
