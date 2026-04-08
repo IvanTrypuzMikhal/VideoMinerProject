@@ -46,13 +46,6 @@ public class Comment {
         this.createdOn = createdOn;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
 
     @Override
     public String toString() {
@@ -60,7 +53,6 @@ public class Comment {
                 "id='" + id + '\'' +
                 ", text='" + text + '\'' +
                 ", createdOn='" + createdOn + '\'' +
-                ", author=" + author +
                 '}';
     }
 }
