@@ -32,19 +32,16 @@ public class Video {
 
     @JsonProperty("author")
     @OneToOne(cascade = CascadeType.ALL)
-    @NotNull(message = "Comment author cannot be null")
     private User author;
 
     @JsonProperty("comments")
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "videoId")
-    @NotNull(message = "Video comments cannot be null")
     private List<Comment> comments;
 
     @JsonProperty("captions")
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "videoId")
-    @NotNull(message = "Video captions cannot be null")
     private List<Caption> captions;
 
     public String getId() {
