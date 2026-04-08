@@ -79,6 +79,14 @@ public class Video {
         this.releaseTime = releaseTime;
     }
 
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+    
     public List<Comment> getComments() {
         return comments;
     }
@@ -102,6 +110,7 @@ public class Video {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", releaseTime='" + releaseTime + '\'' +
+                ", author=" + author +
                 ", comments=" + comments +
                 ", captions=" + captions +
                 '}';
