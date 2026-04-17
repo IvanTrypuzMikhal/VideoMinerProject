@@ -44,6 +44,17 @@ public class Video {
     @JoinColumn(name = "videoId")
     private List<Caption> captions;
 
+    public Video() {
+    }
+
+    public Video(String name, String description, String releaseTime) {
+        this.name = name;
+        this.description = description;
+        this.releaseTime = releaseTime;
+        this.comments = new java.util.ArrayList<>();
+        this.captions = new java.util.ArrayList<>();
+    }
+
     public String getId() {
         return id;
     }
