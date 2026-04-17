@@ -24,7 +24,8 @@ public class Caption {
 
     public Caption() {
     }
-    public Caption(String name, String language) {
+    public Caption(String id,String name, String language) {
+        this.id = id;
         this.name = name;
         this.language = language;
     }

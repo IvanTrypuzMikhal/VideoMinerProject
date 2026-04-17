@@ -41,11 +41,12 @@ public class Channel {
 
     }
 
-    public Channel(String name, String description, String createdTime) {
+    public Channel(String id, String name, String description, String createdTime, List<Video> videos) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.createdTime = createdTime;
-        this.videos = new ArrayList<>();
+        this.videos = videos;
     }
 
     public String getId() {

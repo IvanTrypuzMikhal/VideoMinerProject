@@ -47,7 +47,8 @@ public class Video {
     public Video() {
     }
 
-    public Video(String name, String description, String releaseTime) {
+    public Video(String id, String name, String description, String releaseTime) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.releaseTime = releaseTime;
