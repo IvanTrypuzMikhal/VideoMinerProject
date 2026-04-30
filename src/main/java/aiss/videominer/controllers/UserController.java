@@ -20,14 +20,14 @@ public class UserController {
     UserRepository repository;
 
     @Operation(
-            summary = "Obtener todos los usuarios",
-            description = "Obtiene la lista completa de usuarios almacenados en VideoMiner.",
+            summary = "Get all users",
+            description = "Gets the full list of users stored in VideoMiner.",
             tags = { "VideoMiner Users" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Listado de usuarios obtenido correctamente",
+                    description = "User list retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -37,7 +37,7 @@ public class UserController {
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -47,14 +47,14 @@ public class UserController {
     }
 
     @Operation(
-            summary = "Obtener un usuario por ID",
-            description = "Obtiene un usuario almacenado en VideoMiner a partir de su identificador.",
+            summary = "Get a user by ID",
+            description = "Gets a user stored in VideoMiner by its identifier.",
             tags = { "VideoMiner Users" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Usuario obtenido correctamente",
+                    description = "User retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -64,19 +64,19 @@ public class UserController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Usuario no encontrado",
+                    description = "User not found",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
     @GetMapping("/{id}")
     public User getUserById(
             @Parameter(
-                    description = "Identificador del usuario que se desea obtener",
+                    description = "Identifier of the user to retrieve",
                     example = "1"
             )
             @PathVariable String id){

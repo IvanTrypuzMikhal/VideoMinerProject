@@ -20,14 +20,14 @@ public class CommentController {
     CommentRepository repository;
 
     @Operation(
-            summary = "Obtener todos los comentarios",
-            description = "Obtiene la lista completa de comentarios almacenados en VideoMiner.",
+            summary = "Get all comments",
+            description = "Gets the full list of comments stored in VideoMiner.",
             tags = { "VideoMiner Comments" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Listado de comentarios obtenido correctamente",
+                    description = "Comment list retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -37,7 +37,7 @@ public class CommentController {
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -47,14 +47,14 @@ public class CommentController {
     }
 
     @Operation(
-            summary = "Obtener un comentario por ID",
-            description = "Obtiene un comentario almacenado en VideoMiner a partir de su identificador.",
+            summary = "Get a comment by ID",
+            description = "Gets a comment stored in VideoMiner by its identifier.",
             tags = { "VideoMiner Comments" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Comentario obtenido correctamente",
+                    description = "Comment retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -64,19 +64,19 @@ public class CommentController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Comentario no encontrado",
+                    description = "Comment not found",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
     @GetMapping("/{id}")
     public Comment getCommentById(
             @Parameter(
-                    description = "Identificador del comentario que se desea obtener",
+                    description = "Identifier of the comment to retrieve",
                     example = "comment123"
             )
             @PathVariable String id){

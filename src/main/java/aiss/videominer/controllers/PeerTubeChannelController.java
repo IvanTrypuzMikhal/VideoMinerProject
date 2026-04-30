@@ -27,14 +27,14 @@ public class PeerTubeChannelController {
 
 
     @Operation(
-            summary = "Obtener un canal de PeerTube",
-            description = "Obtiene un canal de PeerTube por su identificador, opcionalmente incluyendo un número limitado de vídeos y comentarios por vídeo. De manera predeterminada los límites son 10 vídeos y 10 comentarios.",
+            summary = "Get a PeerTube channel",
+            description = "Gets a PeerTube channel by its identifier, optionally including a limited number of videos and comments per video. By default the limits are 10 videos and 10 comments.",
             tags = { "PeerTube Channels" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Canal obtenido correctamente desde PeerTube",
+                    description = "Channel retrieved successfully from PeerTube",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -44,36 +44,36 @@ public class PeerTubeChannelController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Parámetros de entrada inválidos",
+                    description = "Invalid input parameters",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Canal no encontrado en PeerTube",
+                    description = "Channel not found in PeerTube",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno al obtener el canal de PeerTube",
+                    description = "Internal error while retrieving the PeerTube channel",
                     content = @Content
             )
     })
     @GetMapping("/{channelId}")
     public Channel getChannelFromPeerTube(
             @Parameter(
-                    description = "Identificador del canal de PeerTube que se desea obtener",
+                    description = "Identifier of the PeerTube channel to retrieve",
                     example = "poney@peertube2.cpy.re"
             )
             @PathVariable String channelId,
 
             @Parameter(
-                    description = "Número máximo de vídeos que se incluirán en el canal",
+                    description = "Maximum number of videos to include in the channel",
                     example = "10"
             )
             @RequestParam(defaultValue = "10") int maxVideos,
 
             @Parameter(
-                    description = "Número máximo de comentarios que se incluirán por cada vídeo",
+                    description = "Maximum number of comments to include per video",
                     example = "10"
             )
             @RequestParam(defaultValue = "10") int maxComments){
@@ -81,14 +81,14 @@ public class PeerTubeChannelController {
     }
 
     @Operation(
-            summary = "Obtener y guardar un canal de PeerTube",
-            description = "Obtiene un canal de PeerTube, lo transforma al formato de VideoMiner y lo almacena en la base de datos del servicio VideoMiner.",
+            summary = "Get and store a PeerTube channel",
+            description = "Gets a PeerTube channel, transforms it to the VideoMiner format, and stores it in the VideoMiner service database.",
             tags = { "PeerTube Channels" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "201",
-                    description = "Canal obtenido y guardado correctamente en VideoMiner",
+                    description = "Channel retrieved and stored successfully in VideoMiner",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -98,17 +98,17 @@ public class PeerTubeChannelController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Parámetros de entrada inválidos",
+                    description = "Invalid input parameters",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Canal no encontrado en PeerTube",
+                    description = "Channel not found in PeerTube",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno al obtener o guardar el canal",
+                    description = "Internal error while retrieving or storing the channel",
                     content = @Content
             )
     })
@@ -116,19 +116,19 @@ public class PeerTubeChannelController {
     @PostMapping("/{channelId}")
     public Channel postChannelFromPeerTube(
             @Parameter(
-                    description = "Identificador del canal de PeerTube que se desea obtener y guardar",
+                    description = "Identifier of the PeerTube channel to retrieve and store",
                     example = "poney@peertube2.cpy.re"
             )
             @PathVariable String channelId,
 
             @Parameter(
-                    description = "Número máximo de vídeos que se incluirán en el canal",
+                    description = "Maximum number of videos to include in the channel",
                     example = "10"
             )
             @RequestParam(defaultValue = "10") int maxVideos,
 
             @Parameter(
-                    description = "Número máximo de comentarios que se incluirán por cada vídeo",
+                    description = "Maximum number of comments to include per video",
                     example = "10"
             )
             @RequestParam(defaultValue = "10") int maxComments){

@@ -25,14 +25,14 @@ public class ChannelController {
 
 
     @Operation(
-            summary = "Obtener todos los canales",
-            description = "Obtiene la lista completa de canales almacenados en VideoMiner.",
+            summary = "Get all channels",
+            description = "Gets the full list of channels stored in VideoMiner.",
             tags = { "VideoMiner Channels" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Listado de canales obtenido correctamente",
+                    description = "Channel list retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -42,7 +42,7 @@ public class ChannelController {
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -52,14 +52,14 @@ public class ChannelController {
     }
 
     @Operation(
-            summary = "Obtener un canal por ID",
-            description = "Obtiene un canal almacenado en VideoMiner a partir de su identificador.",
+            summary = "Get a channel by ID",
+            description = "Gets a channel stored in VideoMiner by its identifier.",
             tags = { "VideoMiner Channels" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Canal obtenido correctamente",
+                    description = "Channel retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -69,34 +69,34 @@ public class ChannelController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Canal no encontrado",
+                    description = "Channel not found",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
     @GetMapping("/{id}")
     public Channel getChannelById(
             @Parameter(
-                    description = "Identificador del canal que se desea obtener",
-                    example = "canal123"
+                    description = "Identifier of the channel to retrieve",
+                    example = "channel123"
             )
             @PathVariable String id) {
         return repository.findById(id).get();
     }
 
     @Operation(
-            summary = "Crear un canal",
-            description = "Crea un nuevo canal en VideoMiner a partir de la información enviada en el cuerpo de la petición.",
+            summary = "Create a channel",
+            description = "Creates a new channel in VideoMiner from the request body payload.",
             tags = { "VideoMiner Channels" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "201",
-                    description = "Canal creado correctamente",
+                    description = "Channel created successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -106,12 +106,12 @@ public class ChannelController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Datos de entrada inválidos",
+                    description = "Invalid input data",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -122,29 +122,29 @@ public class ChannelController {
     }
 
     @Operation(
-            summary = "Actualizar un canal",
-            description = "Actualiza los datos de un canal existente en VideoMiner a partir de su identificador.",
+            summary = "Update a channel",
+            description = "Updates an existing channel in VideoMiner by its identifier.",
             tags = { "VideoMiner Channels" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "204",
-                    description = "Canal actualizado correctamente",
+                    description = "Channel updated successfully",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Datos de entrada inválidos",
+                    description = "Invalid input data",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Canal no encontrado",
+                    description = "Channel not found",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -152,8 +152,8 @@ public class ChannelController {
     @PutMapping("/{id}")
     public void updateChannel(
             @Parameter(
-                    description = "Identificador del canal que se desea actualizar",
-                    example = "canal123"
+                    description = "Identifier of the channel to update",
+                    example = "channel123"
             )
             @PathVariable String id,
             @Valid @RequestBody Channel channel) {
@@ -167,24 +167,24 @@ public class ChannelController {
     }
 
     @Operation(
-            summary = "Eliminar un canal",
-            description = "Elimina un canal almacenado en VideoMiner a partir de su identificador.",
+            summary = "Delete a channel",
+            description = "Deletes a channel stored in VideoMiner by its identifier.",
             tags = { "VideoMiner Channels" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "204",
-                    description = "Canal eliminado correctamente",
+                    description = "Channel deleted successfully",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Canal no encontrado",
+                    description = "Channel not found",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -192,8 +192,8 @@ public class ChannelController {
     @DeleteMapping("/{id}")
     public void deleteChannel(
             @Parameter(
-                    description = "Identificador del canal que se desea eliminar",
-                    example = "canal123"
+                    description = "Identifier of the channel to delete",
+                    example = "channel123"
             )
             @PathVariable String id) {
         if(repository.existsById(id)) {

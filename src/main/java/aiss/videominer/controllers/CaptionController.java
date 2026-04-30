@@ -20,14 +20,14 @@ public class CaptionController {
     CaptionRepository repository;
 
     @Operation(
-            summary = "Obtener todos los subtítulos",
-            description = "Obtiene la lista completa de subtítulos almacenados en VideoMiner.",
+            summary = "Get all captions",
+            description = "Gets the full list of captions stored in VideoMiner.",
             tags = { "VideoMiner Captions" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Listado de subtítulos obtenido correctamente",
+                    description = "Caption list retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -37,7 +37,7 @@ public class CaptionController {
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -47,14 +47,14 @@ public class CaptionController {
     }
 
     @Operation(
-            summary = "Obtener un subtítulo por ID",
-            description = "Obtiene un subtítulo almacenado en VideoMiner a partir de su identificador.",
+            summary = "Get a caption by ID",
+            description = "Gets a caption stored in VideoMiner by its identifier.",
             tags = { "VideoMiner Captions" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Subtítulo obtenido correctamente",
+                    description = "Caption retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -64,19 +64,19 @@ public class CaptionController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Subtítulo no encontrado",
+                    description = "Caption not found",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
     @GetMapping("/{id}")
     public Caption getCaptionById(
             @Parameter(
-                    description = "Identificador del subtítulo que se desea obtener",
+                    description = "Identifier of the caption to retrieve",
                     example = "caption123"
             )
             @PathVariable String id){

@@ -25,14 +25,14 @@ public class VideoController {
     VideoRepository repository;
 
     @Operation(
-            summary = "Obtener todos los vídeos",
-            description = "Obtiene la lista completa de vídeos almacenados en VideoMiner.",
+            summary = "Get all videos",
+            description = "Gets the full list of videos stored in VideoMiner.",
             tags = { "VideoMiner Videos" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Listado de vídeos obtenido correctamente",
+                    description = "Video list retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -42,7 +42,7 @@ public class VideoController {
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
@@ -52,14 +52,14 @@ public class VideoController {
     }
 
     @Operation(
-            summary = "Obtener un vídeo por ID",
-            description = "Obtiene un vídeo almacenado en VideoMiner a partir de su identificador.",
+            summary = "Get a video by ID",
+            description = "Gets a video stored in VideoMiner by its identifier.",
             tags = { "VideoMiner Videos" }
     )
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Vídeo obtenido correctamente",
+                    description = "Video retrieved successfully",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -69,19 +69,19 @@ public class VideoController {
             ),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Vídeo no encontrado",
+                    description = "Video not found",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "500",
-                    description = "Error interno del servidor",
+                    description = "Internal server error",
                     content = @Content
             )
     })
     @GetMapping("/{id}")
     public Video getVideoById(
             @Parameter(
-                    description = "Identificador del vídeo que se desea obtener",
+                    description = "Identifier of the video to retrieve",
                     example = "video123"
             )
             @PathVariable String id){

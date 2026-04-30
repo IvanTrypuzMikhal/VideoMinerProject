@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 		info = @Info(
 				title = "VideoMiner API",
 				version = "1.0",
-				description = "API REST para extraer canales, vídeos, subtítulos y comentarios de PeerTube y DailyMotion, transformarlos y recopilarlos."
+				description = "REST API to extract channels, videos, captions, and comments from PeerTube and Dailymotion, transform them, and collect them."
 		)
 )
 @SpringBootApplication
