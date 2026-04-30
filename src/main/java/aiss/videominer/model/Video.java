@@ -1,5 +1,6 @@
 package aiss.videominer.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -30,7 +31,8 @@ public class Video {
     @NotEmpty(message = "Video release time cannot be empty")
     private String releaseTime;
 
-    @JsonProperty("author")
+    @JsonProperty("user")
+    @JsonAlias("author")
     @OneToOne(cascade = CascadeType.ALL)
     private User author;
 

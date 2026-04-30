@@ -38,7 +38,6 @@ public class ChannelController {
     @PutMapping("/{id}")
     public void updateChannel(@PathVariable String id, @Valid @RequestBody Channel channel) {
         Optional<Channel> channelData = repository.findById(id);
-
         Channel _channel = channelData.get();
         _channel.setName(channel.getName());
         _channel.setDescription(channel.getDescription());
