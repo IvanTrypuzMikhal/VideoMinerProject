@@ -1,6 +1,6 @@
 package aiss.videominer.controllers;
 
-import aiss.videominer.model.Comment;
+import aiss.videominer.models.Comment;
 import aiss.videominer.repository.CommentRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

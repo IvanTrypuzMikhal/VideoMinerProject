@@ -1,6 +1,6 @@
 package aiss.videominer.controllers;
 
-import aiss.videominer.model.Channel;
+import aiss.videominer.models.Channel;
 import aiss.videominer.repository.ChannelRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

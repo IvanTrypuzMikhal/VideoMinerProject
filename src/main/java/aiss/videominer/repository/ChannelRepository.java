@@ -1,6 +1,6 @@
 package aiss.videominer.repository;
 
-import aiss.videominer.model.Channel;
+import aiss.videominer.models.Channel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

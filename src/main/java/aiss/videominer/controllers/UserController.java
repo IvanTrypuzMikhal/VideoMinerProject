@@ -1,6 +1,6 @@
 package aiss.videominer.controllers;
 
-import aiss.videominer.model.User;
+import aiss.videominer.models.User;
 import aiss.videominer.repository.UserRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
