@@ -1,6 +1,7 @@
 package aiss.videominer.controllers;
 
 
+import aiss.videominer.exception.ChannelNotFoundException;
 import aiss.videominer.models.Channel;
 import aiss.videominer.repository.ChannelRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,6 +52,7 @@ public class ChannelController {
         return repository.findAll();
     }
 
+
     @Operation(
             summary = "Get a channel by ID",
             description = "Gets a channel stored in VideoMiner by its identifier.",
@@ -84,9 +86,15 @@ public class ChannelController {
                     description = "Identifier of the channel to retrieve",
                     example = "channel123"
             )
-            @PathVariable String id) {
-        return repository.findById(id).get();
+            @PathVariable String id) throws ChannelNotFoundException {
+
+        Optional<Channel> channel = repository.findById(id);
+        if (!channel.isPresent()){
+            throw new ChannelNotFoundException();
+        }
+        return channel.get();
     }
+
 
     @Operation(
             summary = "Create a channel",
@@ -118,8 +126,9 @@ public class ChannelController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Channel createChannel(@Valid @RequestBody Channel channel) {
-        return repository.save(new Channel(channel.getId() ,channel.getName(), channel.getDescription(), channel.getCreatedTime(), channel.getVideos()));
+        return repository.save(new Channel(channel.getId(), channel.getName(), channel.getDescription(), channel.getCreatedTime(), channel.getVideos()));
     }
+
 
     @Operation(
             summary = "Update a channel",
@@ -156,8 +165,12 @@ public class ChannelController {
                     example = "channel123"
             )
             @PathVariable String id,
-            @Valid @RequestBody Channel channel) {
+            @Valid @RequestBody Channel channel) throws ChannelNotFoundException {
+
         Optional<Channel> channelData = repository.findById(id);
+        if (!channelData.isPresent()){
+            throw new ChannelNotFoundException();
+        }
         Channel _channel = channelData.get();
         _channel.setName(channel.getName());
         _channel.setDescription(channel.getDescription());
@@ -165,6 +178,7 @@ public class ChannelController {
         _channel.setVideos(channel.getVideos());
         repository.save(_channel);
     }
+
 
     @Operation(
             summary = "Delete a channel",

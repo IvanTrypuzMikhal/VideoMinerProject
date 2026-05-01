@@ -1,5 +1,6 @@
 package aiss.videominer.controllers;
 
+import aiss.videominer.exception.VideoNotFoundException;
 import aiss.videominer.models.Video;
 import aiss.videominer.repository.VideoRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/videos")
@@ -49,6 +51,7 @@ public class VideoController {
         return repository.findAll();
     }
 
+
     @Operation(
             summary = "Get a video by ID",
             description = "Gets a video stored in VideoMiner by its identifier.",
@@ -82,7 +85,12 @@ public class VideoController {
                     description = "Identifier of the video to retrieve",
                     example = "video123"
             )
-            @PathVariable String id){
-        return repository.findById(id).get();
+            @PathVariable String id) throws VideoNotFoundException {
+
+        Optional<Video> video = repository.findById(id);
+        if (!video.isPresent()){
+            throw new VideoNotFoundException();
+        }
+        return video.get();
     }
 }

@@ -1,5 +1,6 @@
 package aiss.videominer.controllers;
 
+import aiss.videominer.exception.UserNotFoundException;
 import aiss.videominer.models.User;
 import aiss.videominer.repository.UserRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -46,6 +48,7 @@ public class UserController {
         return repository.findAll();
     }
 
+
     @Operation(
             summary = "Get a user by ID",
             description = "Gets a user stored in VideoMiner by its identifier.",
@@ -79,7 +82,12 @@ public class UserController {
                     description = "Identifier of the user to retrieve",
                     example = "1"
             )
-            @PathVariable String id){
-        return repository.findById(id).get();
+            @PathVariable String id) throws UserNotFoundException {
+
+        Optional<User> user =  repository.findById(id);
+        if (!user.isPresent()){
+            throw new UserNotFoundException();
+        }
+        return user.get();
     }
 }

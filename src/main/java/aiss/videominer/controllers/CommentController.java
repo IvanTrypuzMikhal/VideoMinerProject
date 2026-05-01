@@ -1,5 +1,6 @@
 package aiss.videominer.controllers;
 
+import aiss.videominer.exception.CommentNotFoundException;
 import aiss.videominer.models.Comment;
 import aiss.videominer.repository.CommentRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/comments")
@@ -46,6 +48,7 @@ public class CommentController {
         return repository.findAll();
     }
 
+
     @Operation(
             summary = "Get a comment by ID",
             description = "Gets a comment stored in VideoMiner by its identifier.",
@@ -79,7 +82,12 @@ public class CommentController {
                     description = "Identifier of the comment to retrieve",
                     example = "comment123"
             )
-            @PathVariable String id){
-        return repository.findById(id).get();
+            @PathVariable String id) throws CommentNotFoundException {
+
+        Optional<Comment> comment = repository.findById(id);
+        if (!comment.isPresent()){
+            throw new CommentNotFoundException();
+        }
+        return comment.get();
     }
 }
