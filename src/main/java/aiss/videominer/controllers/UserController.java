@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("videominer/users")
 public class UserController {
     @Autowired
     UserRepository repository;

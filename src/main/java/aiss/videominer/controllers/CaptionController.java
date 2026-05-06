@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/captions")
+@RequestMapping("videominer/captions")
 public class CaptionController {
     @Autowired
     CaptionRepository repository;
