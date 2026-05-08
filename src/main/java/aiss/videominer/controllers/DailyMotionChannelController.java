@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-
 @RestController
 @RequestMapping("/dailymotion/videominer")
 public class DailyMotionChannelController {
@@ -21,14 +20,12 @@ public class DailyMotionChannelController {
     @Autowired
     ChannelRepository repository;
 
-
     @Autowired
     RestTemplate restTemplate;
 
-
     @Operation(
             summary = "Get a Dailymotion channel",
-            description = "Gets a Dailymotion channel by its identifier, optionally including a limited number of videos and comments per video. By default the limits are 10 videos and 10 comments.",
+            description = "Gets a Dailymotion channel by its identifier, optionally including a limited number of videos and result pages. By default the limits are 10 videos and 2 pages.",
             tags = { "Dailymotion Channels" }
     )
     @ApiResponses({
@@ -59,7 +56,7 @@ public class DailyMotionChannelController {
             )
     })
     @GetMapping("/{channelId}")
-    public Channel getChannelFromPeerTube(
+    public Channel getChannelFromDailyMotion(
             @Parameter(
                     description = "Identifier of the Dailymotion channel to retrieve",
                     example = "x1abcde"
@@ -73,11 +70,17 @@ public class DailyMotionChannelController {
             @RequestParam(defaultValue = "10") int maxVideos,
 
             @Parameter(
-                    description = "Maximum number of comments to include per video",
-                    example = "10"
+                    description = "Maximum number of result pages to retrieve from Dailymotion",
+                    example = "2"
             )
-            @RequestParam(defaultValue = "10") int maxComments){
-        return restTemplate.getForObject("http://localhost:8082/dailymotion/"+channelId+ "?maxVideos=" + maxVideos + "&maxComments=" + maxComments, Channel.class);
+            @RequestParam(defaultValue = "2") int maxPages) {
+
+        return restTemplate.getForObject(
+                "http://localhost:8082/dailymotion/" + channelId
+                        + "?maxVideos=" + maxVideos
+                        + "&maxPages=" + maxPages,
+                Channel.class
+        );
     }
 
     @Operation(
@@ -114,7 +117,7 @@ public class DailyMotionChannelController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{channelId}")
-    public Channel postChannelFromPeerTube(
+    public Channel postChannelFromDailyMotion(
             @Parameter(
                     description = "Identifier of the Dailymotion channel to retrieve and store",
                     example = "x1abcde"
@@ -128,13 +131,18 @@ public class DailyMotionChannelController {
             @RequestParam(defaultValue = "10") int maxVideos,
 
             @Parameter(
-                    description = "Maximum number of comments to include per video",
-                    example = "10"
+                    description = "Maximum number of result pages to retrieve from Dailymotion",
+                    example = "2"
             )
-            @RequestParam(defaultValue = "10") int maxComments){
-        Channel channel =  restTemplate.getForObject("http://localhost:8082/dailymotion/"+channelId+ "?maxVideos=" + maxVideos + "&maxComments=" + maxComments, Channel.class);
+            @RequestParam(defaultValue = "2") int maxPages) {
+
+        Channel channel = restTemplate.getForObject(
+                "http://localhost:8082/dailymotion/" + channelId
+                        + "?maxVideos=" + maxVideos
+                        + "&maxPages=" + maxPages,
+                Channel.class
+        );
+
         return repository.save(channel);
     }
-
 }
-
