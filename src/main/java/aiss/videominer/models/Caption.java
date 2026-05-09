@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 /**
  * @author Juan C. Alonso
@@ -21,6 +22,9 @@ public class Caption {
 
     @JsonProperty("language")
     private String language;
+
+    @Column(name = "videoId", insertable = false, updatable = false)
+    private String videoId;
 
     public Caption() {
     }
@@ -52,6 +56,10 @@ public class Caption {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getVideoId() {
+        return videoId;
     }
 
     @Override
